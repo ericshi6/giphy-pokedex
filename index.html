@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class= "container">
+          <h1>PokeAPI+Giphy</h1>
+          <small>Please enter the name of a Pokémon or a number between 1-898.</small>
+            <div id="pokedex">
+                 <div class="search">
+                    <input type="text" id="searchTerm" class="searchTerm" v-model="query" placeholder="Please enter a Pokémon or a number between 1-898" @keyup.enter="updateDex()">
+                    <button type="submit" id="searchButton" class="searchButton" v-on:click="updateDex">
+                      <i class="fa fa-search"></i>
+                   </button>
+                   <hr>
+                 </div>
+
+              <div class="info card">
+                <h3 class ="card-title text-center" style="text-transform: capitalize;">{{ dexData.name }} | #{{dexData.id}} | <span style="text-transform: uppercase;">{{ dexSpecies.generation.name }} </span></h3>
+                    <div class="row">
+                      <div class="col-sm">
+                        <img v-bind:src="dexData.sprites.front_default" style="max-width: 96px"/>
+
+                  <div v-for="genus in dexSpecies.genera">
+                      <span v-if="genus.language.name ==='en'">{{genus.genus}}</span>
+                  </div>
+                    <p>Type: <span style="text-transform: uppercase;" v-for="type in dexData.types"> {{type.type.name}} </span></p>
+                      </div>
+                      <div class="col-sm">
+                        <table style="margin-top: 5px; text-align: center;" >
+                      <tr>
+                        <td style="padding-right: 1em">Height:</td>
+                        <td>{{dexData.height*10}}cm <!--/{{Math.floor(dexData.height*10/30.48)}}' {{
+
+                         Math.round(12*((dexData.height*10/30.48)-(Math.floor(dexData.height*10/30.48)))) 
+                        
+                        }}"--></td>
+                      </tr>
+                      <tr>
+                        <td style="padding-right: 1em">Weight:</td>
+                        <td>{{dexData.weight/10}}kg <!--/ {{(dexData.weight/10*2.2204).toFixed(2)}}lbs --></td>
+                      </tr>
+                    </table>
+                    <p>Abilities: <span v-for="ability in dexData.abilities" style="text-transform: capitalize;"> {{ability.ability.name}} <span v-if="ability.is_hidden">(hidden) </span></p>
+                      </div>
+                    </div>
+                  
+                    <br>
+                    <h5>Evolutionary Chain: </h5>
+                    <p> 
+                      <span v-if="evolutionChain.evolves_to.length > 0" style="text-transform: capitalize;">
+                        {{evolutionChain.species.name}}
+                        <span v-for="evolve in evolutionChain.evolves_to"> <!--handles stage 1 branches like eevee-->
+                        / {{evolve.species.name}}
+                          <!--span v-for="e in evolve">{{e}} </span-->
+                        </span>
+                        <span v-if="evolutionChain.evolves_to.length === 2 && evolutionChain.evolves_to[0].evolves_to.length >0" ><!--stage 1 branches with a 2nd stage like dustox-->
+                          / {{evolutionChain.evolves_to[1].evolves_to[0].species.name}}
+                        </span>
+                        <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 0" > <!--normal stage 2 evo like bulbasaur-->
+                          / {{evolutionChain.evolves_to[0].evolves_to[0].species.name}}
+                        </span>
+                        <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 1" > <!--stage 2 branch evo like poliwag-->
+                          / {{evolutionChain.evolves_to[0].evolves_to[1].species.name}}
+                        </span>
+                        
+                        
+                      </span>
+                      <span v-else><span style="text-transform: capitalize;">{{ dexData.name }} </span> does not have any known evolutions. </span>
+                      </p>
+                       <br>
+                </div>
+              <hr>
+
+                <div class ="stats">
+                   <h4 >Stats:</h4>                         
+                    <table>
+                    <tr v-for="stat in dexData.stats">
+                      <td>{{stat.stat.name}}:</td>
+                      <td>{{stat.base_stat}}</td>
+                      <td> <input class="stat-bar" type="range" min="0" max="255" disabled v-bind:value="stat.base_stat"></td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+
+                <div class="gifs" style = "display:flex; flex-wrap: wrap;">
+                <div v-for="gif in gifs">
+                    <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px" /></a>
+                </div>
+                </div>
+                <hr>
+
+                <div class = "dexEntries">
+                  <h3>Dex Entries:</h3>
+                  <table>
+                    <tr>
+                      <th class="text-center">Game</th>
+                      <th>Pokédex Entry</th>
+                    </tr>
+                    <tr class="item" v-for="entry in dexSpecies.flavor_text_entries" v-if="entry.language.name ==='en'">
+                      <td class="game text-center" style="text-transform: capitalize; white-space: nowrap; padding: 1em;">{{entry.version.name}} </td>
+                      <td>{{entry.flavor_text}}</td>
+                    </tr> 
+                  </table>
+                </div>
+            </div>
+            
+          <hr>
+          <footer>
+            <small>
+              Connect with Eric! <a href="https://www.linkedin.com/in/ericshi6/" class="button button-contact" target="_blank">LinkedIn <i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+              <a href="https://github.com/ericshi6" class="button button-contact" target="_blank">GitHub <i class="fa fa-github"></i></a>
+            </small>
+          </footer>
+      </div>
+<script src="pokedex.js"></script>
+
+    </body>
+
+</html>
