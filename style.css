@@ -1,4 +1,7 @@
 
+.body {
+	display:block;
+}
 
 .card-title{
     background-color: powderblue;
