@@ -104,10 +104,10 @@ body {
 }
 
 .info {
-	min-height: 25vh;
+	//min-height: 25vh;
 }
 .stats {
-	min-height: 25vh;
+	//min-height: 25vh;
 	font-size: 2rem;
 
 }
