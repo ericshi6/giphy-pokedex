@@ -8,7 +8,7 @@
   display: flex;
   max-width: 800px;
   opacity: 1;
-  	    background-color: #fff;
+	background-color: #fff;
 
 }
 
@@ -104,11 +104,11 @@ body {
 }
 
 .info {
-	height: 25vh;
+	min-height: 25vh;
 }
 .stats {
-	height: 25vh;
-		font-size: 2rem;
+	min-height: 25vh;
+	font-size: 2rem;
 
 }
 
