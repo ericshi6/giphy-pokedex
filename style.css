@@ -115,7 +115,9 @@ body {
 .stats {
 	//min-height: 25vh;
 	font-size: 2rem;
-
+.body {
+	width: 80vh;
+}
 }
 
 
