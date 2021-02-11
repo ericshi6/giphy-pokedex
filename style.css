@@ -2,6 +2,10 @@
 	display:block;
 }
 
+.container {
+	width: 80vh;
+}
+
 .card-title{
     background-color: powderblue;
 
