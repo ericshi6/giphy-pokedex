@@ -40,15 +40,11 @@
                         <table style="margin-top: 5px; text-align: center;" >
                       <tr>
                         <td style="padding-right: 1em">Height:</td>
-                        <td>{{dexData.height*10}}cm <!--/{{Math.floor(dexData.height*10/30.48)}}' {{
-
-                         Math.round(12*((dexData.height*10/30.48)-(Math.floor(dexData.height*10/30.48)))) 
-                        
-                        }}"--></td>
+                        <td>{{dexData.height*10}}cm / {{Math.floor(Math.round(dexData.height*3.39701)/12)}} ft {{Math.round(dexData.height*3.39701)%12}} in </td>
                       </tr>
                       <tr>
                         <td style="padding-right: 1em">Weight:</td>
-                        <td>{{dexData.weight/10}}kg <!--/ {{(dexData.weight/10*2.2204).toFixed(2)}}lbs --></td>
+                        <td>{{dexData.weight/10}}kg / {{(dexData.weight/10*2.2204).toFixed(2)}}lbs</td>
                       </tr>
                     </table>
                     <p>Abilities: <br><span v-for="ability in dexData.abilities" style="text-transform: capitalize;"> &#8226 {{ability.ability.name}} <span v-if="ability.is_hidden">(hidden) </span><br></p>                      </div>
