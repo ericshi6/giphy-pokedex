@@ -16,6 +16,9 @@ const pokedex = new Vue({
         var url = 'api.giphy.com/v1/gifs/';
         var search = 'search?';
         var limit = 6;
+        if (typeof this.query === 'string'){
+            this.query = this.query.toLowerCase().trim();
+        }
 
         
 
