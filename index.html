@@ -96,7 +96,8 @@
 
                 <div class="gifs" style = "display:flex; flex-wrap: wrap;">
                 <div v-for="gif in gifs">
-                    <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px" /></a>
+                  <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px; max-width: 95%" /></a>
+
                 </div>
                 </div>
                 <hr style="border-color:#64ffda;">
