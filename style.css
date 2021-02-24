@@ -1,5 +1,5 @@
 body {
-	display:block;
+  display:block;
   color:#e6f1ff;
   background-color: #0a192f;
 }
@@ -14,7 +14,7 @@ h1, h2, h3, h4, a{
   display: flex;
   max-width: 800px;
   opacity: 1;
-	background-color: transparent;
+  background-color: transparent;
 
 }
 
@@ -62,7 +62,7 @@ h1, h2, h3, h4, a{
   background: transparent;
   overflow: hidden;
   outline: none;
-  opacity: 0.7;
+  opacity: 1;
   -webkit-transition: .2s;
   transition: opacity .2s;
   border: 0;
