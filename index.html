@@ -2,6 +2,7 @@
 <html>
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
         <title>
             Eric's Pokedex
         </title>
@@ -26,8 +27,8 @@
                    <hr>
                  </div>
 
-              <div class="info card">
-                <h3 class ="card-title text-center" style="text-transform: capitalize;">{{ dexData.name }} | #{{dexData.id}} | <span style="text-transform: uppercase;">{{ dexSpecies.generation.name }} </span></h3>
+              <div class="info">
+                <h3 class ="card-title text-center" style="text-transform: capitalize;">{{ dexData.name }} #{{dexData.id}} <br><small class="font-italic" style="text-transform: uppercase;">({{ dexSpecies.generation.name }}) </small></h3>
                     <div class="row">
                       <div class="col-sm">
                         <img v-bind:src="dexData.sprites.front_default" style="max-width: 96px"/>
@@ -39,7 +40,7 @@
                       <div class="col-sm">
                         <table style="margin-top: 5px; text-align: center;" >
                       <tr>
-                        <td style="padding-right: 1em">Height:</td>
+                        <td style="padding-right: 1em;">Height:</td>
                         <td>{{dexData.height*10}}cm / {{Math.floor(Math.round(dexData.height*3.93701)/12)}} ft {{Math.round(dexData.height*3.93701)%12}} in </td>
                       </tr>
                       <tr>
@@ -51,31 +52,34 @@
                     </div>
                   
                     <br>
-                    <h5>Evolutionary Chain: </h5>
-                    <p> 
-                      <span v-if="evolutionChain.evolves_to.length > 0" style="text-transform: capitalize;">
-                        {{evolutionChain.species.name}}
-                        <span v-for="evolve in evolutionChain.evolves_to"> <!--handles stage 1 branches like eevee-->
-                        / {{evolve.species.name}}
-                          <!--span v-for="e in evolve">{{e}} </span-->
+                    <div class= "evo text-center" >
+                      <h4>Evolutionary Chain: </h4>
+                      <p> 
+                        <span v-if="evolutionChain.evolves_to.length > 0" style="text-transform: capitalize;">
+                          {{evolutionChain.species.name}}
+                          <span v-for="evolve in evolutionChain.evolves_to"> <!--handles stage 1 branches like eevee-->
+                          / {{evolve.species.name}}
+                            <!--span v-for="e in evolve">{{e}} </span-->
+                          </span>
+                          <span v-if="evolutionChain.evolves_to.length === 2 && evolutionChain.evolves_to[0].evolves_to.length >0" ><!--stage 1 branches with a 2nd stage like dustox-->
+                            / {{evolutionChain.evolves_to[1].evolves_to[0].species.name}}
+                          </span>
+                          <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 0" > <!--normal stage 2 evo like bulbasaur-->
+                            / {{evolutionChain.evolves_to[0].evolves_to[0].species.name}}
+                          </span>
+                          <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 1" > <!--stage 2 branch evo like poliwag-->
+                            / {{evolutionChain.evolves_to[0].evolves_to[1].species.name}}
+                          </span>
+                          
+                          
                         </span>
-                        <span v-if="evolutionChain.evolves_to.length === 2 && evolutionChain.evolves_to[0].evolves_to.length >0" ><!--stage 1 branches with a 2nd stage like dustox-->
-                          / {{evolutionChain.evolves_to[1].evolves_to[0].species.name}}
-                        </span>
-                        <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 0" > <!--normal stage 2 evo like bulbasaur-->
-                          / {{evolutionChain.evolves_to[0].evolves_to[0].species.name}}
-                        </span>
-                        <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 1" > <!--stage 2 branch evo like poliwag-->
-                          / {{evolutionChain.evolves_to[0].evolves_to[1].species.name}}
-                        </span>
-                        
-                        
-                      </span>
-                      <span v-else><span style="text-transform: capitalize;">{{ dexData.name }} </span> does not have any known evolutions. </span>
-                      </p>
+                        <span v-else><span style="text-transform: capitalize;">{{ dexData.name }} </span> does not have any known evolutions. </span>
+                        </p>
+                    </div>
+                    
                        <br>
                 </div>
-              <hr>
+              <hr style="border-color:#64ffda;">
 
                 <div class ="stats">
                    <h4 >Stats:</h4>                         
@@ -87,14 +91,16 @@
                     </tr>
                   </table>
                 </div>
-                <hr>
+                <hr style="border-color:#64ffda;">
+
 
                 <div class="gifs" style = "display:flex; flex-wrap: wrap;">
                 <div v-for="gif in gifs">
                     <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px" /></a>
                 </div>
                 </div>
-                <hr>
+                <hr style="border-color:#64ffda;">
+
 
                 <div class = "dexEntries">
                   <h3>Dex Entries:</h3>
@@ -112,7 +118,8 @@
             </div>
             
           <footer class="text-center">
-            <hr>
+            <hr style="border-color:#64ffda;">
+
 
             <small>
               Connect with Eric! @ 
@@ -121,7 +128,8 @@
               / <a href="https://ericshi6.github.io/portfolio/" class="button button-contact" target="_blank">Portfolio</a>
 
             </small>
-            <hr>
+            <hr style="border-color:#64ffda;">
+
           </footer>
       </div>
 <script src="pokedex.js"></script>
