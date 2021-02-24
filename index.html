@@ -24,9 +24,17 @@
                     <button type="submit" id="searchButton" class="searchButton" v-on:click="updateDex">
                       <i class="fa fa-search"></i>
                    </button>
-                   <hr>
+                   <br>
+                   
                  </div>
-
+                 <h5 class="text-right" style="position:relative">
+                  <small>
+                    <a v-on:click="updateDex1(dexData.id-1)">prev</a> - 
+                    <a v-on:click="updateDex1(dexData.id+1)">next</a>
+                  </small>
+                  
+                 </h5>
+                
               <div class="info">
                 <h3 class ="card-title text-center" style="text-transform: capitalize;">{{ dexData.name }} #{{dexData.id}} <br><small class="font-italic" style="text-transform: uppercase;">({{ dexSpecies.generation.name }}) </small></h3>
                     <div class="row">
@@ -56,19 +64,23 @@
                       <h4>Evolutionary Chain: </h4>
                       <p> 
                         <span v-if="evolutionChain.evolves_to.length > 0" style="text-transform: capitalize;">
-                          {{evolutionChain.species.name}}
+                          <a v-on:click="updateDex1(evolutionChain.species.name)">{{evolutionChain.species.name}}</a>
                           <span v-for="evolve in evolutionChain.evolves_to"> <!--handles stage 1 branches like eevee-->
-                          / {{evolve.species.name}}
+                          / <a v-on:click="updateDex1(evolve.species.name)">{{evolve.species.name}}</a>
                             <!--span v-for="e in evolve">{{e}} </span-->
                           </span>
                           <span v-if="evolutionChain.evolves_to.length === 2 && evolutionChain.evolves_to[0].evolves_to.length >0" ><!--stage 1 branches with a 2nd stage like dustox-->
-                            / {{evolutionChain.evolves_to[1].evolves_to[0].species.name}}
+                            /
+                            <a v-on:click="updateDex1(evolutionChain.evolves_to[1].evolves_to[0].species.name)">{{evolutionChain.evolves_to[1].evolves_to[0].species.name}}</a> 
+                            
                           </span>
                           <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 0" > <!--normal stage 2 evo like bulbasaur-->
-                            / {{evolutionChain.evolves_to[0].evolves_to[0].species.name}}
+                            / 
+                            <a v-on:click="updateDex1(evolutionChain.evolves_to[0].evolves_to[0].species.name)">{{evolutionChain.evolves_to[0].evolves_to[0].species.name}}</a> 
                           </span>
                           <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 1" > <!--stage 2 branch evo like poliwag-->
-                            / {{evolutionChain.evolves_to[0].evolves_to[1].species.name}}
+                            / 
+                            <a v-on:click="updateDex1(evolutionChain.evolves_to[0].evolves_to[1].species.name)">{{evolutionChain.evolves_to[0].evolves_to[1].species.name}}</a> 
                           </span>
                           
                           
@@ -96,8 +108,7 @@
 
                 <div class="gifs" style = "display:flex; flex-wrap: wrap;">
                 <div v-for="gif in gifs">
-                  <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px; max-width: 95%" /></a>
-
+                    <a :href="gif.images.original.url" target="blank"><img v-bind:src="gif.images.preview_gif.url" style="height:151px; max-width: 95%" /></a>
                 </div>
                 </div>
                 <hr style="border-color:#64ffda;">
