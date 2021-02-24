@@ -53,7 +53,7 @@
                       </tr>
                       <tr>
                         <td style="padding-right: 1em">Weight:</td>
-                        <td>{{dexData.weight/10}}kg / {{(dexData.weight/10*2.2204).toFixed(2)}}lbs</td>
+                        <td>{{dexData.weight/10}}kg / {{(dexData.weight/10*2.2204).toFixed(1)}}lbs</td>
                       </tr>
                     </table>
                     <p>Abilities: <br><span v-for="ability in dexData.abilities" style="text-transform: capitalize;"> &#8226 {{ability.ability.name}} <span v-if="ability.is_hidden">(hidden) </span><br></p>                      </div>
