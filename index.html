@@ -29,8 +29,8 @@
                  </div>
                  <h5 class="text-right" style="position:relative">
                   <small>
-                    <a href="#" v-on:click="updateDex1(dexData.id-1)">prev</a> - 
-                    <a href="#" v-on:click="updateDex1(dexData.id+1)">next</a>
+                    <a href="#" v-on:click="updateDexLink(dexData.id-1)">prev</a> - 
+                    <a href="#" v-on:click="updateDexLink(dexData.id+1)">next</a>
                   </small>
                   
                  </h5>
@@ -64,23 +64,23 @@
                       <h4>Evolutionary Chain: </h4>
                       <p> 
                         <span v-if="evolutionChain.evolves_to.length > 0" style="text-transform: capitalize;">
-                          <a href="#" style="color:#64ffda;" v-on:click="updateDex1(evolutionChain.species.name)">{{evolutionChain.species.name}}</a>
+                          <a href="#" style="color:#64ffda;" v-on:click="updateDexLink(evolutionChain.species.name)">{{evolutionChain.species.name}}</a>
                           <span v-for="evolve in evolutionChain.evolves_to"> <!--handles stage 1 branches like eevee-->
-                          / <a href="#" style="color:#64ffda;" v-on:click="updateDex1(evolve.species.name)">{{evolve.species.name}}</a>
+                          / <a href="#" style="color:#64ffda;" v-on:click="updateDexLink(evolve.species.name)">{{evolve.species.name}}</a>
                             <!--span v-for="e in evolve">{{e}} </span-->
                           </span>
                           <span v-if="evolutionChain.evolves_to.length === 2 && evolutionChain.evolves_to[0].evolves_to.length >0" ><!--stage 1 branches with a 2nd stage like dustox-->
                             /
-                            <a href="#" style="color:#64ffda;" v-on:click="updateDex1(evolutionChain.evolves_to[1].evolves_to[0].species.name)">{{evolutionChain.evolves_to[1].evolves_to[0].species.name}}</a> 
+                            <a href="#" style="color:#64ffda;" v-on:click="updateDexLink(evolutionChain.evolves_to[1].evolves_to[0].species.name)">{{evolutionChain.evolves_to[1].evolves_to[0].species.name}}</a> 
                             
                           </span>
                           <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 0" > <!--normal stage 2 evo like bulbasaur-->
                             / 
-                            <a href="#" style="color:#64ffda;" v-on:click="updateDex1(evolutionChain.evolves_to[0].evolves_to[0].species.name)">{{evolutionChain.evolves_to[0].evolves_to[0].species.name}}</a> 
+                            <a href="#" style="color:#64ffda;" v-on:click="updateDexLink(evolutionChain.evolves_to[0].evolves_to[0].species.name)">{{evolutionChain.evolves_to[0].evolves_to[0].species.name}}</a> 
                           </span>
                           <span v-if="evolutionChain.evolves_to[0].evolves_to.length > 1" > <!--stage 2 branch evo like poliwag-->
                             / 
-                            <a href="#" style="color:#64ffda;" v-on:click="updateDex1(evolutionChain.evolves_to[0].evolves_to[1].species.name)">{{evolutionChain.evolves_to[0].evolves_to[1].species.name}}</a> 
+                            <a href="#" style="color:#64ffda;" v-on:click="updateDexLink(evolutionChain.evolves_to[0].evolves_to[1].species.name)">{{evolutionChain.evolves_to[0].evolves_to[1].species.name}}</a> 
                           </span>
                           
                           
@@ -131,10 +131,10 @@
                 <div class="message">
                     <p>Feel free to let me know your favorite Pokémon.</p>
                     <p>Some of my favorites are:</p>
-                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDex1(130)">Gyarados</a>,
-                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDex1(194)">Wooper</a>,
-                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDex1(25)">Pikachu</a>, and
-                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDex1(882)">Dracovish</a>.
+                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDexLink(130)">Gyarados</a>,
+                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDexLink(194)">Wooper</a>,
+                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDexLink(25)">Pikachu</a>, and
+                    <a href="#" class="favoritepok" style="color:#64ffda;" v-on:click="updateDexLink(882)">Dracovish</a>.
                   
                 </div>
             </div>
