@@ -48,7 +48,13 @@ const pokedex = new Vue({
 
         },
         updateDexLink: function(q) {
-            this.query=q;
+            if (q === 'random'){
+                this.query=Math.floor(Math.random() * 898)+1; 
+
+            }
+            else {
+                this.query=q;
+            }
             if (typeof this.query === 'string'){
                 this.query = this.query.toLowerCase().trim();
             }

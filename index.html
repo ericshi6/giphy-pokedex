@@ -27,13 +27,11 @@
                    <br>
                    
                  </div>
-                 <h5 class="text-right" style="position:relative">
-                  <small>
+                 <p class="text-right" style="position:relative">
                     <a href="#" v-on:click="updateDexLink(dexData.id-1)">prev</a> - 
-                    <a href="#" v-on:click="updateDexLink(dexData.id+1)">next</a>
-                  </small>
-                  
-                 </h5>
+                    <a href="#" v-on:click="updateDexLink(dexData.id+1)">next</a> - 
+                    <a href="#" v-on:click="updateDexLink('random')">random</a>
+                </p>
                 
               <div class="info">
                 <h3 class ="card-title text-center" style="text-transform: capitalize;">{{ dexData.name }} #{{dexData.id}} <br><small class="font-italic" style="text-transform: uppercase;">({{ dexSpecies.generation.name }}) </small></h3>
